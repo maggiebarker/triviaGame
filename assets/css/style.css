@@ -1,0 +1,52 @@
+/* red color from top: #811510; */
+
+body {
+	background: url('../images/marvelback.jpg');
+	font-family:'Anton', sans-serif;
+}
+
+.jumbotron{
+	background: url('../images/marvel.jpg');
+	color: #d7bd09;
+	border: 5px solid #d7bd09;
+	font-family:'Anton', sans-serif;
+
+}
+.jumbotron h1{
+	font-size: 48px;
+}
+
+.jumbotron p{
+	font-size: 18px;
+}
+
+.container {
+	width: 55%;
+	height: 538px;
+	background-color: #811510;
+	font-family: 'Catamaran', sans-serif;
+	color: #d7bd09;
+}
+
+#countdown h1{
+	font-size: 34px;
+}
+
+#question h3{
+	font-size: 32px;
+}
+
+#answers h4, li{
+	font-size: 30px;
+}
+
+#footer {
+	height: 30px;
+	padding: 10px;
+	border-top: 2px solid white;
+	text-align: center;
+	color: #d7bd09;
+	font-family:'Anton', sans-serif;
+	font-size: 13px;
+
+}
