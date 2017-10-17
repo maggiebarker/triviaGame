@@ -1,7 +1,5 @@
-/* red color from top: #811510; */
-
 body {
-	background: url('../images/marvelback.jpg');
+	background: url('../images/marvelback.jpg'); 
 	font-family:'Anton', sans-serif;
 }
 
@@ -23,21 +21,21 @@ body {
 .container {
 	width: 55%;
 	height: 538px;
-	background-color: #811510;
+	background-color: #811510; /*red*/
 	font-family: 'Catamaran', sans-serif;
-	color: #d7bd09;
+	color: #d7bd09; /*yellow*/
 }
 
 #countdown h1{
-	font-size: 34px;
+	font-size: 30px;
 }
 
 #question h3{
-	font-size: 32px;
+	font-size: 30px;
 }
 
 #answers h4, li{
-	font-size: 30px;
+	font-size: 28px;
 }
 
 #footer {
