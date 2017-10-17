@@ -4,8 +4,8 @@
 // Get elements
 
 var timer = document.getElementById("counter");
-var question_div = document.getElementById("question");
-var choices_div = document.getElementById("answers");
+var questions = document.getElementById("question");
+var multChoice = document.getElementById("answers");
 var userPick;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
@@ -16,41 +16,65 @@ var count = 20; // 20 seconds per question
 
     var marvelTrivia = [{
 	question: "What is the Incredible Hulk's real name?",
-	choices: ["Bucky Barnes", "Bruce Wayne", "Bruce Banner", "Steve Rogers" ],
+	choices: ["<br>a: Bucky Barnes", 
+			  "<br>b: Bruce Wayne", 
+			  "<br>c: Bruce Banner", 
+			  "<br>d: Steve Rogers" ],
 	validAnswer: 2
 }, {
 	question:"Who is considered 'The First Avenger?'",
-	choices: ["Iron Man", "Captain America", "Nick Fury", "Spiderman"],
+	choices: ["<br>a: Iron Man", 
+			  "<br>b: Captain America", 
+			  "<br>c: Nick Fury", 
+			  "<br>d: Spiderman"],
 	validAnswer: 1
 
 }, {
 	question:"Which co-creator of Marvel Comics makes regular cameo apperances in the films?",
-	choices: ["Scott Summers", "Sebastian Stan", "Sam Jackson", "Stan Lee"],
+	choices: ["<br>a: Scott Summers", 
+			  "<br>b: Sebastian Stan", 
+			  "<br>c: Sam Jackson", 
+			  "<br>d: Stan Lee"],
 	validAnswer: 3
 
 }, {
 	question:"Who played Peter Parker in 'Spider-Man: Homecoming?'",
-	choices: ["Tobey Maguire", "Tom Holland", "Andrew Garfield", "Drake Bell"],
-	validAnswer: 1
+	choices: ["<br>a: Tom Holland", 
+			  "<br>b: Tobey Maguire", 
+			  "<br>c: Andrew Garfield", 
+			  "<br>d: Drake Bell"],
+	validAnswer: 0
 
 }, {
 	question:"Which of these is NOT a member of the Fantastic 4?",
-	choices: ["Reed Richards", "Pyro", "Sue Storm", "The Thing"],
+	choices: ["<br>a: Reed Richards",
+			  "<br>b: Pyro", 
+			  "<br>c: Sue Storm", 
+			  "<br>d: The Thing"],
 	validAnswer: 1
 
  }, {
 	question:"Where does Thor live?",
-	choices: ["Midgard", "Jotenheim", "Asgard", "Valhalla"],
+	choices: ["<br>a: Midgard", 
+			  "<br>b: Jotenheim", 
+			  "<br>c: Asgard", 
+			  "<br>d: Valhalla"],
 	validAnswer: 2
 
 }, {
 	question:"What powers Iron Man's suit?",
-	choices: ["The Tesseract", "Arc Reactor", "Magnets", "The Mind Stone"],
+	choices: ["<br>a: The Tesseract", 
+			  "<br>b: Arc Reactor", 
+			  "<br>c: Magnets", 
+			  "<br>d: The Mind Stone"],
 	validAnswer: 1
 
 }, {
 	question:"What is Captain America's shield made of?",
-	choices: ["Titanium", "Adamantium", "Carbonadium", "Vibranium"],
+	choices: ["<br>a: Titanium", 
+			  "<br>b: Adamantium", 
+			  "<br>c: Carbonadium", 
+			  "<br>d: Vibranium"],
 	validAnswer: 3
 
 }
@@ -59,13 +83,40 @@ var count = 20; // 20 seconds per question
 
 console.log(marvelTrivia);
 
-// Need a question counter to track the question #
+//Let's get a question to display on screen:
 
-//var questionCounter = 0;
+for (i = 0; i < marvelTrivia.length; i++) { 
+	var trivia = marvelTrivia[Math.floor(Math.random()*marvelTrivia.length)];
+	console.log(trivia);
+	questions.innerHTML = "<h1>" + trivia.question + "</h1>";
+	multChoice.innerHTML = "<h4>" + trivia.choices + "<br></h4>";
 
-// Array containing user answers
+	var answer = trivia.validAnswer;
 
-//var userAnswer = [];
+	console.log(answer);
+}
+
+/*           for (var i = 0; i < answer.length; i++) {
+                var button = $('<button>');
+                button.text(answer[i]);
+                button.attr('data-id', i);
+                $('#multChoice').append(button);
+            }  
+
+    	if (userPick === answer) {
+		$('#multChoice').text("Correct!!! The correct answer was: " + answer);
+
+	}
+
+}
+*/
+//Need a question counter to track the question #
+
+var questionCounter = 0;
+
+//Array containing user answers
+
+var userAnswer = [];
 
 // Need a start button
 
