@@ -6,24 +6,52 @@
 var timer = document.getElementById("counter");
 var questions = document.getElementById("question");
 var multChoice = document.getElementById("answers");
+var start = document.getElementById("start_button");
 var userPick;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var question = 0;
 var count = 20; // 20 seconds per question
 
+// Need a start button
+
+$("#start_button").click(function() {
+    $('#question').html("<h3>" + trivia.question + "<br></h3>" + "<h4><br>" + trivia.choices + "</h4>");
+    $("#start_button").hide();
+    $('#countdown').html("<h1>Time Remaining: " + count + "</h1><hr>")
+		var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+			timer()
+				count=count-1
+  				if (count <= 0)
+  				{
+     			clearInterval(counter);
+     				//counter ended, go to next question
+     			return;
+  				}
+	//Do code for showing the number of seconds here
+  			timer() 
+  				count=count-1;
+  				if (count <= 0)
+  				{
+     			clearInterval(counter);
+     			return;
+  				}
+			$("#countdown").innerHTML=count + " seconds";
+		
+}); 
+
 // Make an object with the questions and answers
 
     var marvelTrivia = [{
 	question: "What is the Incredible Hulk's real name?",
-	choices: ["<br>a: Bucky Barnes", 
+	choices: ["a: Bucky Barnes", 
 			  "<br>b: Bruce Wayne", 
 			  "<br>c: Bruce Banner", 
 			  "<br>d: Steve Rogers" ],
 	validAnswer: 2
 }, {
 	question:"Who is considered 'The First Avenger?'",
-	choices: ["<br>a: Iron Man", 
+	choices: ["a: Iron Man", 
 			  "<br>b: Captain America", 
 			  "<br>c: Nick Fury", 
 			  "<br>d: Spiderman"],
@@ -31,7 +59,7 @@ var count = 20; // 20 seconds per question
 
 }, {
 	question:"Which co-creator of Marvel Comics makes regular cameo apperances in the films?",
-	choices: ["<br>a: Scott Summers", 
+	choices: ["a: Scott Summers", 
 			  "<br>b: Sebastian Stan", 
 			  "<br>c: Sam Jackson", 
 			  "<br>d: Stan Lee"],
@@ -39,7 +67,7 @@ var count = 20; // 20 seconds per question
 
 }, {
 	question:"Who played Peter Parker in 'Spider-Man: Homecoming?'",
-	choices: ["<br>a: Tom Holland", 
+	choices: ["a: Tom Holland", 
 			  "<br>b: Tobey Maguire", 
 			  "<br>c: Andrew Garfield", 
 			  "<br>d: Drake Bell"],
@@ -47,7 +75,7 @@ var count = 20; // 20 seconds per question
 
 }, {
 	question:"Which of these is NOT a member of the Fantastic 4?",
-	choices: ["<br>a: Reed Richards",
+	choices: ["a: Reed Richards",
 			  "<br>b: Pyro", 
 			  "<br>c: Sue Storm", 
 			  "<br>d: The Thing"],
@@ -55,7 +83,7 @@ var count = 20; // 20 seconds per question
 
  }, {
 	question:"Where does Thor live?",
-	choices: ["<br>a: Midgard", 
+	choices: ["a: Midgard", 
 			  "<br>b: Jotenheim", 
 			  "<br>c: Asgard", 
 			  "<br>d: Valhalla"],
@@ -63,7 +91,7 @@ var count = 20; // 20 seconds per question
 
 }, {
 	question:"What powers Iron Man's suit?",
-	choices: ["<br>a: The Tesseract", 
+	choices: ["a: The Tesseract", 
 			  "<br>b: Arc Reactor", 
 			  "<br>c: Magnets", 
 			  "<br>d: The Mind Stone"],
@@ -71,7 +99,7 @@ var count = 20; // 20 seconds per question
 
 }, {
 	question:"What is Captain America's shield made of?",
-	choices: ["<br>a: Titanium", 
+	choices: ["a: Titanium", 
 			  "<br>b: Adamantium", 
 			  "<br>c: Carbonadium", 
 			  "<br>d: Vibranium"],
@@ -88,16 +116,15 @@ console.log(marvelTrivia);
 for (i = 0; i < marvelTrivia.length; i++) { 
 	var trivia = marvelTrivia[Math.floor(Math.random()*marvelTrivia.length)];
 	console.log(trivia);
-	questions.innerHTML = "<h1>" + trivia.question + "</h1>";
-	multChoice.innerHTML = "<h4>" + trivia.choices + "<br></h4>";
-
+	
+	
 	var answer = trivia.validAnswer;
 
 	console.log(answer);
 }
 
-/*           for (var i = 0; i < answer.length; i++) {
-                var button = $('<button>');
+/*           for (var i = 0; i < choices.length; i++) {
+                var button = $('<#button>');
                 button.text(answer[i]);
                 button.attr('data-id', i);
                 $('#multChoice').append(button);
@@ -117,8 +144,6 @@ var questionCounter = 0;
 //Array containing user answers
 
 var userAnswer = [];
-
-// Need a start button
 
 // Need to display the question/possible answers
 

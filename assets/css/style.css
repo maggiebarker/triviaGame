@@ -20,8 +20,9 @@ body {
 
 .container {
 	width: 65%;
-	height: 538px;
+	height: 540px;
 	background-color: #811510; /*red*/
+	text-align: center;
 	font-family: 'Catamaran', sans-serif;
 	color: #d7bd09; /*yellow*/
 }
@@ -34,10 +35,16 @@ body {
 	font-size: 36px;
 }
 
-#answers h4, li{
+#question h4, li {
 	font-size: 30px;
 	line-height: 42px;
 }
+
+/*#answers h4, li{
+	font-size: 30px;
+	line-height: 42px;
+}
+*/
 
 #footer {
 	height: 30px;
