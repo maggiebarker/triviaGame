@@ -3,10 +3,13 @@
 
 // Get elements
 
-var timer = document.getElementById("counter");
+/* I probably don't need these because of jquery
+var timer = document.getElementById("countdown");
 var questions = document.getElementById("question");
 var multChoice = document.getElementById("answers");
 var start = document.getElementById("start_button");
+*/
+
 var userPick;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
@@ -16,28 +19,45 @@ var count = 20; // 20 seconds per question
 // Need a start button
 
 $("#start_button").click(function() {
-    $('#question').html("<h3>" + trivia.question + "<br></h3>" + "<h4><br>" + trivia.choices + "</h4>");
+    $('#question').html("<h3>" + trivia.question + "<br></h3>");
+    $('#answers').html("<h4><br>" + trivia.choices + "</h4>");
     $("#start_button").hide();
     $('#countdown').html("<h1>Time Remaining: " + count + "</h1><hr>")
-		var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+/*		function timer() {
+			theClock = setInterval(twentySeconds, 1000);
+			function twentySeconds() {
+				if (count === 0) {
+				clearInterval(theClock);
+				}
+				if (count > 0) {
+				count--;
+		}
+			$("#countdown").html(count);
+	}
+}
+*/
+/*		function twentySeconds(){
+		theClock = setInterval(timer, 1000); //1000 will  run it every 1 second
 			timer()
-				count=count-1
+				count = count-1
   				if (count <= 0)
   				{
      			clearInterval(counter);
      				//counter ended, go to next question
      			return;
   				}
-	//Do code for showing the number of seconds here
+	//Do code for showing the number of seconds remaining here
   			timer() 
-  				count=count-1;
+  				count = count-1;
   				if (count <= 0)
   				{
      			clearInterval(counter);
      			return;
   				}
-			$("#countdown").innerHTML=count + " seconds";
-		
+			$('#countdown').html("<h1>Time Remaining: " + count + "</h1><hr>")
+		}
+		*/
 }); 
 
 // Make an object with the questions and answers
@@ -48,14 +68,14 @@ $("#start_button").click(function() {
 			  "<br>b: Bruce Wayne", 
 			  "<br>c: Bruce Banner", 
 			  "<br>d: Steve Rogers" ],
-	validAnswer: 2
+	correctAnswer: 2
 }, {
 	question:"Who is considered 'The First Avenger?'",
 	choices: ["a: Iron Man", 
 			  "<br>b: Captain America", 
 			  "<br>c: Nick Fury", 
 			  "<br>d: Spiderman"],
-	validAnswer: 1
+	correctAnswer: 1
 
 }, {
 	question:"Which co-creator of Marvel Comics makes regular cameo apperances in the films?",
@@ -63,7 +83,7 @@ $("#start_button").click(function() {
 			  "<br>b: Sebastian Stan", 
 			  "<br>c: Sam Jackson", 
 			  "<br>d: Stan Lee"],
-	validAnswer: 3
+	correctAnswer: 3
 
 }, {
 	question:"Who played Peter Parker in 'Spider-Man: Homecoming?'",
@@ -71,15 +91,15 @@ $("#start_button").click(function() {
 			  "<br>b: Tobey Maguire", 
 			  "<br>c: Andrew Garfield", 
 			  "<br>d: Drake Bell"],
-	validAnswer: 0
+	correctAnswer: 0
 
 }, {
 	question:"Which of these is NOT a member of the Fantastic 4?",
-	choices: ["a: Reed Richards",
+	choices: ["a: Mr. Fantastic",
 			  "<br>b: Pyro", 
-			  "<br>c: Sue Storm", 
+			  "<br>c: Invisible Woman", 
 			  "<br>d: The Thing"],
-	validAnswer: 1
+	correctAnswer: 1
 
  }, {
 	question:"Where does Thor live?",
@@ -87,7 +107,7 @@ $("#start_button").click(function() {
 			  "<br>b: Jotenheim", 
 			  "<br>c: Asgard", 
 			  "<br>d: Valhalla"],
-	validAnswer: 2
+	correctAnswer: 2
 
 }, {
 	question:"What powers Iron Man's suit?",
@@ -95,7 +115,7 @@ $("#start_button").click(function() {
 			  "<br>b: Arc Reactor", 
 			  "<br>c: Magnets", 
 			  "<br>d: The Mind Stone"],
-	validAnswer: 1
+	correctAnswer: 1
 
 }, {
 	question:"What is Captain America's shield made of?",
@@ -103,7 +123,7 @@ $("#start_button").click(function() {
 			  "<br>b: Adamantium", 
 			  "<br>c: Carbonadium", 
 			  "<br>d: Vibranium"],
-	validAnswer: 3
+	correctAnswer: 3
 
 }
 
@@ -111,17 +131,41 @@ $("#start_button").click(function() {
 
 console.log(marvelTrivia);
 
-//Let's get a question to display on screen:
+//Loop through the questions:
 
 for (i = 0; i < marvelTrivia.length; i++) { 
 	var trivia = marvelTrivia[Math.floor(Math.random()*marvelTrivia.length)];
 	console.log(trivia);
 	
 	
-	var answer = trivia.validAnswer;
+	var answer = trivia.correctAnswer;
+		console.log(answer);
 
-	console.log(answer);
+// Turn the answers into buttons.  Need to loop through answers first?
+
+for (var i = 0; i < trivia.choices.length, i++) {
+	var answerBtn = $('#answers');
+	answerbtn.addClass("btn-group-vertical");
+	answerbtn.attr(choices[i]);
+	answerbtn.text(choices[i]);
+	$("#answers").append(answerBtn);
+
 }
+
+/* This didn't work:
+var uAnswers = function () {        
+	answerButtons = document.getElementById('#answers');
+	uChoices = document.createElement('ul');
+for (var i = 0; i < trivia.choices.length; i++) {
+	list = document.createElement('li');
+	list.id = 'trivia.choices';
+	list.innerHTML = trivia.choices[i];
+	check();
+	answerButtons.appendChild(uChoices);
+	uChoices.appendChild(list);
+	}
+} 
+} */
 
 /*           for (var i = 0; i < choices.length; i++) {
                 var button = $('<#button>');
@@ -145,11 +189,11 @@ var questionCounter = 0;
 
 var userAnswer = [];
 
-// Need to display the question/possible answers
-
 // Need to initiate the countdown 20 seconds per question
 
 // Immediately move to the answer screen when an answer is selected
+
+
 
 // Need to display the correct answer/reaction
 
