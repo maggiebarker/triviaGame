@@ -14,7 +14,7 @@ var userPick;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var question = 0;
-var count = 20; // 20 seconds per question
+var count = 30; // 30 seconds per question
 
 // Need a start button
 
@@ -25,8 +25,8 @@ $("#start_button").click(function() {
     $('#countdown').html("<h1>Time Remaining: " + count + "</h1><hr>")
 
 /*		function timer() {
-			theClock = setInterval(twentySeconds, 1000);
-			function twentySeconds() {
+			theClock = setInterval(thirtySeconds, 1000);
+			function thirtySeconds() {
 				if (count === 0) {
 				clearInterval(theClock);
 				}
@@ -143,14 +143,15 @@ for (i = 0; i < marvelTrivia.length; i++) {
 
 // Turn the answers into buttons.  Need to loop through answers first?
 
-for (var i = 0; i < trivia.choices.length, i++) {
+/* This didn't work either:
+	for (var i = 0; i < trivia.choices.length, i++) {
 	var answerBtn = $('#answers');
 	answerbtn.addClass("btn-group-vertical");
 	answerbtn.attr(choices[i]);
 	answerbtn.text(choices[i]);
 	$("#answers").append(answerBtn);
 
-}
+} */
 
 /* This didn't work:
 var uAnswers = function () {        
@@ -181,6 +182,7 @@ for (var i = 0; i < trivia.choices.length; i++) {
 
 }
 */
+}
 //Need a question counter to track the question #
 
 var questionCounter = 0;
