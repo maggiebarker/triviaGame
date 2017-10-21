@@ -228,11 +228,9 @@ function score(){
 	$("#countdown").empty()
 	$("#question").empty()
 	$("#answers").empty()
-	$("#question").append("<h1>Final Score: </h1>")
-	  var scoreGif = $("<img>");
-	  var gif = './assets/images/another.gif';
-	  scoreGif.attr("src", gif);
-	$("#answers").append("<h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "<br></h4>" + scoreGif);	
+	$("#question").append("<h1>Final Score:</h1><h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "<br></h4>");
+	  var gif = "src='./assets/images/another.gif'";
+	$("#answers").html("<img "+ gif + "/>");	
 
 	restart();
 	}
@@ -251,4 +249,3 @@ function restart(){
 });
 
 }
-
