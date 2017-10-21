@@ -110,6 +110,7 @@ var trivia;
 
 $("#start_button").click(function() {
   renderQuestion()
+  console.log(questionsAsked + " asked")
 });
 
 function timer() {
@@ -139,6 +140,7 @@ function renderQuestion() {
   $("#start_button").hide();
   trivia = marvelTrivia[question]
   $('#question').html("<h3>" + trivia.question + "<br></h3>");
+  questionsAsked++
   // answerDOM.append(trivia.choices[0])
   for (var i = 0; i < trivia.choices.length; i++) {
     var answerBtn = $("<button>");
@@ -151,6 +153,7 @@ function renderQuestion() {
 
 // Need to initiate the countdown 20 seconds per question
 function nextQuestion() {
+//   questionsAsked++
 
   //stop the clock
   clearInterval(theClock);
@@ -160,7 +163,6 @@ function nextQuestion() {
   question++
   //gets new question
   renderQuestion()
-    questionsAsked++
 }
 
 function wrongRight() {
@@ -186,14 +188,14 @@ $('#answers').on("click", ".btn-group-vertical", function(){
   var clickedBtn = $(this).attr("data-answer")
     console.log(clickedBtn);
   //  questionsAsked++
-    console.log(questionsAsked);
+    console.log(questionsAsked + " asked");
   // then see if button they clicked on is the answer or not
   if (clickedBtn == trivia.correctAnswer ) {
     rightAnswer++
 // Immediately move to the answer screen when an answer is selected
     $("#question").empty()
     $("#question").append("<h1>Correct!</h1")
-    console.log(rightAnswer + " right!");
+    console.log(rightAnswer + " right");
     //if it was tell user they got it correctAnswer
       //clear the answer div
       //tell them what the correct answer
@@ -205,29 +207,30 @@ $('#answers').on("click", ".btn-group-vertical", function(){
     incorrectAnswer++
     $("#question").empty()
     $("#question").append("<h1>Incorrect!</h1")
-    console.log(incorrectAnswer + " wrong!");
+    console.log(incorrectAnswer + " wrong");
     //if it was not the correct answer
     //tell them they got it wrong;
     //wait a few seconds then load next questions
     wrongRight()
     setTimeout(nextQuestion, 4000)
-/*  }else if ("click" == 0) {
+  }else if(clickedBtn == 0) {
   	incorrectAnswer++
   	$("#question").empty()
     $("#question").append("<h1>Incorrect!</h1")
-  	console.log(incorrectAnswer + " can't win if you don't play!")
-  }*/
+  	console.log(incorrectAnswer + " no choice")
+  }
+
 
 // Display total right/wrong answers and restart
-function score(){
-	questionsAsked = 9
+/*function score(){
+	questionsAsked = 10
 	  	$("#countdown").empty()
 		$("#question").empty()
 		$("#answers").empty()
 		$("#answers").append("<h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "</h4>");
-		}
+		}*/
+	});
 
-function restart()
+//function restart()
 
-}
-})
+
