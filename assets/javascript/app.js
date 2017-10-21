@@ -120,10 +120,11 @@ function timer() {
 function twentySeconds() {
   if (count === 0) {
     clearInterval(theClock);
+    incorrectAnswer++
     count = 20;
     wrongRight()
 // Need to move to the next question after displaying the answer 4 second delay
-    setTimeout(nextQuestion, 4000)
+    setTimeout(nextQuestion, 3000)
   }
   if (count > 0) {
     count--;
@@ -150,19 +151,20 @@ function renderQuestion() {
     answerDOM.append(answerBtn);
   }
 }
-
 // Need to initiate the countdown 20 seconds per question
 function nextQuestion() {
-//   questionsAsked++
-
   //stop the clock
   clearInterval(theClock);
   //reset the clock variable
   count = 20;
-  //increnment so we can have next question
+  //increment so we can have next question
   question++
   //gets new question
-  renderQuestion()
+  if (questionsAsked < marvelTrivia.length){
+  	renderQuestion()
+  }else{
+  	score();
+  }
 }
 
 function wrongRight() {
@@ -195,42 +197,58 @@ $('#answers').on("click", ".btn-group-vertical", function(){
 // Immediately move to the answer screen when an answer is selected
     $("#question").empty()
     $("#question").append("<h1>Correct!</h1")
-    console.log(rightAnswer + " right");
+    console.log(rightAnswer + " right; " + incorrectAnswer + " wrong");
     //if it was tell user they got it correctAnswer
       //clear the answer div
       //tell them what the correct answer
       //show them the right img
     wrongRight()
     //wait a few seconds then load next questions
-    setTimeout(nextQuestion, 4000)
+    setTimeout(nextQuestion, 3000)
   }else if(clickedBtn != trivia.correctAnswer) {
     incorrectAnswer++
     $("#question").empty()
     $("#question").append("<h1>Incorrect!</h1")
-    console.log(incorrectAnswer + " wrong");
+    console.log(rightAnswer + " right; " + incorrectAnswer + " wrong");
     //if it was not the correct answer
     //tell them they got it wrong;
     //wait a few seconds then load next questions
     wrongRight()
-    setTimeout(nextQuestion, 4000)
+    setTimeout(nextQuestion, 3000)
   }else if(clickedBtn == 0) {
   	incorrectAnswer++
   	$("#question").empty()
     $("#question").append("<h1>Incorrect!</h1")
   	console.log(incorrectAnswer + " no choice")
   }
+});
 
+//Display total right/wrong answers and restart
+function score(){
+	$("#countdown").empty()
+	$("#question").empty()
+	$("#answers").empty()
+	$("#question").append("<h1>Final Score: </h1>")
+	  var scoreGif = $("<img>");
+	  var gif = './assets/images/another.gif';
+	  scoreGif.attr("src", gif);
+	$("#answers").append("<h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "<br></h4>" + scoreGif);	
 
-// Display total right/wrong answers and restart
-/*function score(){
-	questionsAsked = 10
-	  	$("#countdown").empty()
-		$("#question").empty()
-		$("#answers").empty()
-		$("#answers").append("<h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "</h4>");
-		}*/
-	});
+	restart();
+	}
 
-//function restart()
+function restart(){
+//Dynamically create a reset button
+	var resetBtn = $("<button>");
+	  resetBtn.addClass("btn btn-basic btn-block");
+	  resetBtn.text("Play again!");
+//Place the reset button in the countdown div
+	$("#countdown").append(resetBtn + "<br><hr>");
+//onclick event bringing the first page of the game back
+	$(resetBtn).on("click", "btn btn-basic btn-block", function() {
+  	 location.reload();
+	
+});
 
+}
 
