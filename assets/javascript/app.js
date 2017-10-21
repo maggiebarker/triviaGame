@@ -1,3 +1,5 @@
+// Load page
+$(document).ready(function() {
 // Make an object with the questions and answers
 var marvelTrivia = [{
     question: "What is the Incredible Hulk's real name?",
@@ -78,7 +80,7 @@ var marvelTrivia = [{
     correctAnswer: "Captain America: Civil War",
     img: "./assets/images/blackpanther.jpg"
 
-  }, {
+ }, {
     question:"Which infinity stone gives Vision his power?",
     choices: ["Mind Stone",
     "Soul Stone",
@@ -90,8 +92,6 @@ var marvelTrivia = [{
   }
 ];
 console.log(marvelTrivia);
-// Load page
-//$(document).ready(function() {
 
 // Get elements
 
@@ -231,21 +231,20 @@ function score(){
 	$("#question").append("<h1>Final Score:</h1><h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "<br></h4>");
 	  var gif = "src='./assets/images/another.gif'";
 	$("#answers").html("<img "+ gif + "/>");	
-
 	restart();
 	}
 
 function restart(){
 //Dynamically create a reset button
-	var resetBtn = $("<button>");
-	  resetBtn.addClass("btn btn-basic btn-block");
-	  resetBtn.text("Play again!");
+	 var resetBtn = $("<button>");
+	   resetBtn.addClass("btn btn-basic btn-block");
+	   resetBtn.text("Click to play again!");
 //Place the reset button in the countdown div
-	$("#countdown").append(resetBtn + "<br><hr>");
+	$("#countdown").show();
+	$("#countdown").append(resetBtn, "<br><hr>");
 //onclick event bringing the first page of the game back
-	$(resetBtn).on("click", "btn btn-basic btn-block", function() {
-  	 location.reload();
-	
+	$(resetBtn).click(function() {
+  	 	location.reload();	  		
+	});
+  }
 });
-
-}
