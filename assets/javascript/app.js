@@ -25,7 +25,6 @@ var marvelTrivia = [{
     "Stan Lee"],
     correctAnswer: "Stan Lee",
     img: "./assets/images/stanlee.jpg"
-
   }, {
     question:"Who played Peter Parker in 'Spider-Man: Homecoming?'",
     choices: ["Tom Holland",
@@ -34,34 +33,30 @@ var marvelTrivia = [{
     "Drake Bell"],
     correctAnswer: "Tom Holland",
     img: "./assets/images/tomholland.jpg"
-
   }, {
-    question:"Which of these is NOT a member of the Fantastic 4?",
-    choices: ["Mr. Fantastic",
-    "Pyro",
-    "Invisible Woman",
-    "The Thing"],
-    correctAnswer: "Pyro",
-    img: "./assets/images/fantastic4.jpg"
-
+    question:"Dr. Strange uses which relic to bend time?",
+    choices: ["Astral Planes",
+    "Eye of Agamotto",
+    "Cloak of Levitation",
+    "Dormammu"],
+    correctAnswer: "Eye of Agamotto",
+    img: "./assets/images/doctorstrange.jpg"
   }, {
-    question:"Where does Thor live?",
+    question:"Thor is the crown prince of which realm?",
     choices: ["Midgard",
     "Jotenheim",
     "Asgard",
     "Valhalla"],
     correctAnswer: "Asgard",
     img: "./assets/images/asgard.jpg"
-
   }, {
-    question:"What fuel source powers Iron Man's suit?",
+    question:"What energy source powers Iron Man's suit?",
     choices: ["The Tesseract",
     "Arc Reactor",
     "Magnets",
     "The Mind Stone"],
     correctAnswer: "Arc Reactor",
     img: "./assets/images/arcreactor.jpg"
-
   }, {
     question:"What is Captain America's shield made of?",
     choices: ["Titanium",
@@ -70,7 +65,6 @@ var marvelTrivia = [{
     "Vibranium"],
     correctAnswer: "Vibranium",
     img: "./assets/images/vibranium.jpg"
-
   }, {
     question:"Which film featured the first appearance of the Black Panther?",
     choices: ["Thor: Ragnarok",
@@ -79,8 +73,7 @@ var marvelTrivia = [{
     "Iron Man 3"],
     correctAnswer: "Captain America: Civil War",
     img: "./assets/images/blackpanther.jpg"
-
- }, {
+  }, {
     question:"Which infinity stone gives Vision his power?",
     choices: ["Mind Stone",
     "Soul Stone",
@@ -88,13 +81,11 @@ var marvelTrivia = [{
     "Time Stone"],
     correctAnswer: "Mind Stone",
     img: "./assets/images/vision.jpg"
-
   }
 ];
 console.log(marvelTrivia);
 
 // Get elements
-
 var userPick;
 var rightAnswer = 0;
 var incorrectAnswer = 0;
@@ -107,7 +98,6 @@ var userAnswer = [];
 var trivia;
 
 // Need a start button
-
 $("#start_button").click(function() {
   renderQuestion()
   console.log(questionsAsked + " asked")
@@ -120,10 +110,13 @@ function timer() {
 function twentySeconds() {
   if (count === 0) {
     clearInterval(theClock);
+//Track unanswered questions as incorrect
     incorrectAnswer++
+    $("#question").empty();
+    $("#question").append("<h1>Time's Up!</h1")
     count = 20;
     wrongRight()
-// Need to move to the next question after displaying the answer 4 second delay
+// Need to move to the next question after displaying the answer 3 second delay
     setTimeout(nextQuestion, 3000)
   }
   if (count > 0) {
@@ -137,12 +130,12 @@ function renderQuestion() {
   var answerDOM = $('#answers');
   answerDOM.empty()
   timer();
-  //grab the id of where we are putting this stuff
+//Put questions in the question div and count the questions asked
   $("#start_button").hide();
   trivia = marvelTrivia[question]
-  $('#question').html("<h3>" + trivia.question + "<br></h3>");
+  $('#question').html("<h3>" + trivia.question + "</h3><br>");
   questionsAsked++
-  // answerDOM.append(trivia.choices[0])
+//Turn the answers into buttons
   for (var i = 0; i < trivia.choices.length; i++) {
     var answerBtn = $("<button>");
     answerBtn.addClass("btn-group-vertical");
@@ -159,7 +152,7 @@ function nextQuestion() {
   count = 20;
   //increment so we can have next question
   question++
-  //gets new question
+  //gets new question and stops script when all questions have run
   if (questionsAsked < marvelTrivia.length){
   	renderQuestion()
   }else{
@@ -172,10 +165,8 @@ function wrongRight() {
   var questionDOM = $("#question");
   //clear the answer div
   answerDOM.empty();
-  //questionDOM.empty()
-  // Need to display the correct answer/reaction
+  //Need to display the correct answer/reaction
   answerDOM.append("<h3>The correct answer is "+ marvelTrivia[question].correctAnswer + "</h3>");
-  //the correct answer is
   //show them the right img
   var img = $("<img>");
   img.attr("src", marvelTrivia[question].img)
@@ -189,37 +180,26 @@ $('#answers').on("click", ".btn-group-vertical", function(){
   //get the value
   var clickedBtn = $(this).attr("data-answer")
     console.log(clickedBtn);
-  //  questionsAsked++
     console.log(questionsAsked + " asked");
-  // then see if button they clicked on is the answer or not
+//Check for correct answer
   if (clickedBtn == trivia.correctAnswer ) {
     rightAnswer++
 // Immediately move to the answer screen when an answer is selected
     $("#question").empty()
     $("#question").append("<h1>Correct!</h1")
     console.log(rightAnswer + " right; " + incorrectAnswer + " wrong");
-    //if it was tell user they got it correctAnswer
-      //clear the answer div
-      //tell them what the correct answer
-      //show them the right img
+//Call our function that displays the correct answer
     wrongRight()
-    //wait a few seconds then load next questions
+    //wait a few seconds then load next question
     setTimeout(nextQuestion, 3000)
   }else if(clickedBtn != trivia.correctAnswer) {
     incorrectAnswer++
     $("#question").empty()
     $("#question").append("<h1>Incorrect!</h1")
     console.log(rightAnswer + " right; " + incorrectAnswer + " wrong");
-    //if it was not the correct answer
-    //tell them they got it wrong;
-    //wait a few seconds then load next questions
+//After displaying answer reaction, move to next question
     wrongRight()
     setTimeout(nextQuestion, 3000)
-  }else if(clickedBtn == 0) {
-  	incorrectAnswer++
-  	$("#question").empty()
-    $("#question").append("<h1>Incorrect!</h1")
-  	console.log(incorrectAnswer + " no choice")
   }
 });
 
@@ -228,8 +208,8 @@ function score(){
 	$("#countdown").empty()
 	$("#question").empty()
 	$("#answers").empty()
-	$("#question").append("<h1>Final Score:</h1><h4>Right: " + rightAnswer + "<br>Wrong: " + incorrectAnswer + "<br></h4>");
-	  var gif = "src='./assets/images/another.gif'";
+	$("#question").append("<h1>Final Score:<h1>" + rightAnswer + "/10</h>");
+	  var gif = "src='./assets/images/another2.gif'";
 	$("#answers").html("<img "+ gif + "/>");	
 	restart();
 	}
@@ -240,8 +220,7 @@ function restart(){
 	   resetBtn.addClass("btn btn-basic btn-block");
 	   resetBtn.text("Click to play again!");
 //Place the reset button in the countdown div
-	$("#countdown").show();
-	$("#countdown").append(resetBtn, "<br><hr>");
+	$("#countdown").append(resetBtn, "<hr>");
 //onclick event bringing the first page of the game back
 	$(resetBtn).click(function() {
   	 	location.reload();	  		

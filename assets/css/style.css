@@ -20,7 +20,8 @@ body {
 
 .container {
 	width: 65%;
-	height: 540px;
+	min-height: 540px;
+	border-bottom: 0;
 	background-color: #811510; /*red*/
 	text-align: center;
 	font-family: 'Catamaran', sans-serif;
@@ -40,11 +41,38 @@ body {
 	line-height: 42px;
 }
 
+.btn-block {
+	border: 2px solid black;
+	background-color: #d7bd09;
+	font-family: 'Catamaran', sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	color: #811510;
+}
+
+.btn-group-vertical {
+	width: 90%;
+	height: 50px;
+	border: 1px solid black;
+	background-color: #d7bd09;
+	text-align: center;
+	font-family: 'Catamaran', sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	color: #811510;
+}
+
 #answers h4, li{
 	font-size: 30px;
 	line-height: 42px;
 }
 
+img {
+	width: 95%;
+	max-width: 450px;
+	height: auto;
+	border: 2px solid white;
+}
 
 #footer {
 	height: 30px;
@@ -54,5 +82,4 @@ body {
 	color: #d7bd09;
 	font-family:'Anton', sans-serif;
 	font-size: 13px;
-
 }
