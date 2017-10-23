@@ -18,7 +18,7 @@ var marvelTrivia = [{
     correctAnswer: "Captain America",
     img: "./assets/images/captainamerica.jpg"
   }, {
-    question:"Which co-creator of Marvel Comics makes regular cameo apperances in the films?",
+    question:"Which co-creator of Marvel Comics makes regular cameo appearances in the films?",
     choices: ["Scott Summers",
     "Sebastian Stan",
     "Sam Jackson",
